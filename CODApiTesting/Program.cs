@@ -19,6 +19,9 @@ internal class Program
             "battle for BattleNet, xbl for XBox,");
 		string platform = Console.ReadLine();
 
+		Console.WriteLine("What is your RapidAPIKey?");
+		string key = Console.ReadLine();
+
 
 		// This creates the URL we need to get the info
 		var uri = $"https://call-of-duty-modern-warfare.p.rapidapi.com/warzone/{gamertag}/{platform}";
@@ -30,7 +33,7 @@ internal class Program
 			RequestUri = new Uri(uri),
 			Headers =
 			{
-				{ "X-RapidAPI-Key", "613e1be4fcmshc7128b510340304p134544jsn7e3018cf4f57" },
+				{ "X-RapidAPI-Key", key },
 				{ "X-RapidAPI-Host", "call-of-duty-modern-warfare.p.rapidapi.com" },
 			},
 		};
