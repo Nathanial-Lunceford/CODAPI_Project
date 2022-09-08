@@ -11,8 +11,6 @@ internal class Program
 
 		/*This is getting Cod results using HTTPClient*/
 
-
-
 		Console.WriteLine("What is your gamertag in Warzone?");
 		string gamertag = Console.ReadLine();
 
@@ -21,6 +19,8 @@ internal class Program
             "battle for BattleNet, xbl for XBox,");
 		string platform = Console.ReadLine();
 
+
+		// This creates the URL we need to get the info
 		var uri = $"https://call-of-duty-modern-warfare.p.rapidapi.com/warzone/{gamertag}/{platform}";
 
 		var client = new HttpClient();
@@ -42,8 +42,9 @@ internal class Program
 			
 			var entries = JObject.Parse(body)["br_all"].ToString();
 
-			//These next two lines get me the amount of wins the chosen player has and prints it
-			var win = JObject.Parse(entries).GetValue("wins");
+            //This code block just gets all the stats and prints them
+            #region Printvalues
+            var win = JObject.Parse(entries).GetValue("wins");
 			Console.WriteLine($"You have {win} wins");
 
 			var kills = JObject.Parse(entries).GetValue("kills");
@@ -84,6 +85,7 @@ internal class Program
 
 			var deaths = JObject.Parse(entries).GetValue("deaths");
 			Console.WriteLine($"You've died {deaths} times");
-		}
-	}
+            #endregion 
+        }
+    }
 }
